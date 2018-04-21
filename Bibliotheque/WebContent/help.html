@@ -1,0 +1,892 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h3><i class="fa fa-question-circle"></i> Aide pour l'application</h3></div> <!-- /.panel-heading -->
+      <div class="panel-body">
+
+        <ul class="nav nav-pills">
+          <li class="active">
+            <a href="#avant-pills" data-toggle="tab" aria-expanded="true">Avant toute chose</a>
+          </li>
+          <li class="">
+            <a href="#accueil-pills" data-toggle="tab" aria-expanded="false">Page d'accueil</a>
+          </li>
+          <li class="">
+            <a href="#liste_livres-pills" data-toggle="tab" aria-expanded="false">Liste des livres</a>
+          </li>
+          <li class="">
+            <a href="#infos_livre-pills" data-toggle="tab" aria-expanded="false">Informations sur un livre</a>
+          </li>
+          <li class="">
+            <a href="#nouveau_livre-pills" data-toggle="tab" aria-expanded="false">Insertion d'un livre</a>
+          </li>
+          <li class="">
+            <a href="#liste_abonnes-pills" data-toggle="tab" aria-expanded="false">Liste des abonnés</a>
+          </li>
+          <li class="">
+            <a href="#infos_abonne-pills" data-toggle="tab" aria-expanded="false">Informations sur un abonné</a>
+          </li>
+          <li class="">
+            <a href="#nouvel_abonne-pills" data-toggle="tab" aria-expanded="false">Insertion d'un abonné</a>
+          </li>
+          <li class="">
+            <a href="#emprunter-pills" data-toggle="tab" aria-expanded="false">Emprunter un exemplaire</a>
+          </li>
+          <li class="">
+            <a href="#retourner-pills" data-toggle="tab" aria-expanded="false">Retourner un exemplaire</a>
+          </li>
+          <li class="">
+            <a href="#emprunts-pills" data-toggle="tab" aria-expanded="false">Liste des emprunts en cours</a>
+          </li>
+          <li class="">
+            <a href="#historique-pills" data-toggle="tab" aria-expanded="false">Historique des emprunts</a>
+          </li>
+          <li class="">
+            <a href="#stats-pills" data-toggle="tab" aria-expanded="false">Statistiques des emprunts</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <!--
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          -->
+          <div class="tab-pane fade active in" id="avant-pills">
+		        <div class="alert alert-danger">
+		          <h3>Avant toute chose...</h3>
+		          <br/>
+		          <h4>Objectifs de la page d'aide</h4>
+		          <p>
+		            Ce projet est une application Web et comme toute application de ce type, un nombre important de fichiers
+		            sont présents. Le paragraphe suivant présente succintement l'organisation du projet, vous verrez rapidement
+		            qu'au sein de celui-ci, votre travail est limité à un nombre réduit de fichiers.
+		          </p>
+		          <p>
+		            Les différentes rubriques de cette page d'aide sont là pour vous aider à faire le lien entre les différentes
+		            fonctionnalités de l'application (les différentes pages accessibles par le menu) et le code Java sur lequel
+		            vous devez intervenir : <strong>quelle(s) méthode(s) de quelle(s) classe(s) est(sont) nécessaire(s) pour que la
+		            fonctionnalité soit remplie</strong>. Quand le code à compléter est identifié, vous trouverez dans les
+		            commentaires Javadoc des méthodes les informations nécessaires sur le format des données à renvoyer. 
+		          </p>
+		          <br/>
+		          <h4>Organisation de l'application et quelques conseils...</h4>
+		          <p>Cette application comporte deux parties :</p>
+		          <ol>
+		            <li>
+		              <p>
+		                <strong>L'interface utilisateur</strong> : <u>vous n'avez pas à priori à y toucher</u> à moins que
+		                vous ne sachiez ce que vous faites !
+		              </p>
+		              <p>
+		                Cette interface utilisateur est codée au sein de fichiers qui sont tous dans le répertoire
+		                <code>WebContent</code>. Elle est constituée principalement de pages JSP (<em>Java Server Pages</em>)
+		                qui utilisent une technologie Java permettant de composer dynamiquement des pages Web avec le
+		                langage Java. Cette technologie est similaire à la technologie PHP.
+		              </p>
+		              <p>
+		                L'affichage Web de cette interface graphique utilise un framwork maintenant très répandu, <strong>Bootstrap</strong>,
+		                voir : <a href="http://getbootstrap.com" target="_blank">http://getbootstrap.com</a>. Ce framework
+		                facilite grandement la mise en page de sites Web et est utilisable avec l'intégralité des langages
+		                utilisés pour faire du Web dynamique : Java, PHP, Python, etc.<br/>
+		                Comme tout site Web utilisant le framework Bootstrap, l'application bibliothèque est dite <em>responsive</em>,
+		                son contenu s'adapte automatiquement au type de terminal utilisé : ordinateur, tablette, téléphone, etc.
+		              </p>
+		              <p>
+		                De nombreux thèmes Bootstrap sont disponibles (libres ou payants). Le thème utilisé pour le projet
+		                bibliothèque est le thème <strong>SB Admin 2</strong>, voir :
+		                <a href="https://startbootstrap.com/template-overviews/sb-admin-2/" target="_blank">https://startbootstrap.com/template-overviews/sb-admin-2/</a>.<br/>
+		                Le thème SB Admin 2 et les fichiers nécessaires au framework Bootstrap sont localisés dans
+		                le répertoire <code>WebContent/bootstrap</code>. Une démonstration des différents composants graphiques
+		                fournis par le thème SB Admin 2 est consultable en suivant le lien <em>Démo du template SB Admin 2</em>
+		                dans le menu de l'application.
+		              </p>
+		              <p>
+		                Cette interface utilisateur dialogue avec le <em>coeur</em> de l'application qui assure les fonctionnalités
+		                métier.
+		              </p>
+		            </li>
+		            <li>
+		              <p>
+		                <strong>La partie métier de l'application</strong> :<br/>
+		                C'est le travail principal que vous aurez à faire dans ce projet. Vous aurez à compléter un certain nombre de
+		                classes présentes dans le répertoire <code>src</code>.
+		              </p>
+		              <p>
+		                Le dialogue entre la partie métier et l'interface de l'application se réalise par l'appel de méthodes dans les
+		                fichiers JSP : voir par exemple le JSP <em>liste_livres.jsp</em> à la ligne 7 qui appelle la méthode
+		                <em>listeTousLesLivres()</em> de la classe <em>ComposantBDLivre</em>. 
+		              </p>
+		              <p>
+		                Ce dialogue est figé, en conséquence : <strong>VOUS NE DEVEZ PAS MODIFIER LA SIGNATURE DES MÉTHODES, IL VOUS
+		                EST INTERDIT DE :
+		                <ul>
+		                  <li>MODIFIER LE NOM DES MÉTHODES</li>
+		                  <li>MODIFIER LES PARAMÈTRES DE CELLES-CI</li>
+		                  <li>MODIFIER LE TYPE DE RETOUR</li>
+		                </ul>
+		                </strong>
+		              </p>
+		              <p>
+		                Des commentaires Javadoc sont présents pour chacune des méthodes sur lesquelles vous aurez à travailler. Ces
+		                commentaires vous indiquent précisément les valeurs rendues qu'il est impératif de respecter pour un fonctionnement
+		                normal de l'application.  
+		              </p>
+                  <p>
+                    Afin de vous aider, un page d'erreur spécifique a été développée. Elle vous permettra d'accéder facilement à la
+                    ligne de code où l'erreur s'est déclenchée. Attention, il est possible que cette page d'erreur ne soit pas efficace
+                    en permanence : il vous faudra alors vous aider des fonctionnalités d'Eclipse afin de localiser l'erreur puis de la
+                    résoudre.   
+                  </p>
+                  <p>
+                    Pour finir, le lien <em>Démonstration du prototype</em> dans le menu vous permet de tester le comportement final de
+                    l'application tel qu'il devrait se présenter à la fin de votre projet.
+		              </p>
+		            </li>
+		          </ol>
+		        </div>
+          </div>
+          <!--
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          -->
+          <div class="tab-pane fade" id="accueil-pills">
+            <hr/>
+            <h3>Page d'accueil de l'application</h3>
+            <div class="col-lg-12">
+              <div class="col-lg-offset-7 col-lg-5">
+                <div class="alert alert-success">
+                  JSP : <code>WebContent/accueil.jsp</code>
+                </div>
+              </div>
+            </div>
+		        <p>
+		          La page d'accueil affiche des informations quantitatives sur le contenu de la bibliothèque. On y trouve
+		          trois composants graphiques qui affichent le nombre de livres, d'abonnés et d'emprunt en cours. Par
+		          défaut, la valeur affichée est <em>-1</em> tant que les méthodes correspondantes n'ont pas été complétées.<br/>
+		          Un lien est présent dans le composant, il permet, comme dans le menu, d'accéder aux listes correspondantes.
+		        </p>
+		        <p>
+		          Les méthodes à compléter pour réaliser les fonctionalités sont les suivantes :
+		        </p>
+            <div class="col-lg-12">
+	            <div class="col-lg-10 col-lg-offset-1">
+	              <div class="table-responsive">
+	                <table class="table">
+	                  <thead>
+	                    <tr>
+	                      <th></th>
+	                      <th>Classe</th>
+	                      <th>Méthode</th>
+	                    </tr>
+	                  </thead>
+	                  <tbody>
+	                    <tr class="info">
+		                    <td><strong>Affichage du nombre de livres</strong></td>
+		                    <td>ComposantBDLivre</td>
+		                    <td><code>nbLivres()</code></td>
+	                    </tr>
+	                    <tr class="info">
+	                      <td><strong>Affichage du nombre d'abonnés</strong></td>
+	                      <td>ComposantBDAbonne</td>
+	                      <td><code>nbAbonnes()</code></td>
+	                    </tr>
+	                    <tr class="info">
+	                      <td><strong>Affichage du nombre d'emprunts en cours</strong></td>
+	                      <td>ComposantBDEmprunt</td>
+	                      <td>
+	                        <code>nbEmpruntsEnCours()</code><br/>
+	                        Attention, une méthode similaire existe mais est employée dans un autre
+	                        endroit de l'application : <em>nbEmpruntsEnCours(int idAbonne)</em>.
+	                      </td>
+	                    </tr>
+	                  </tbody>
+	                </table>
+	              </div> <!-- /.table-responsive -->
+	            </div> <!-- /.col-lg-10 col-lg-offset-1 -->
+            </div> <!-- /.col-lg-12 -->
+		        <p>
+		          La démonstration de l'application montre deux courbes affichant jour par jour le nombre d'emprunts et le nombre
+		          de retours. <strong>Ce travail est optionnel</strong>, s'il vous intéresse, vous trouverez plus d'informations
+		          sur la page d'aide <strong>Statistiques des emprunts</strong>. 
+		        </p>
+          </div>
+          <!--
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          -->
+          <div class="tab-pane fade" id="liste_livres-pills">
+            <hr/>
+            <h3>Liste des livres</h3>
+            <div class="col-lg-12">
+              <div class="col-lg-offset-7 col-lg-5">
+                <div class="alert alert-success">
+                  JSP : <code>WebContent/liste_livres.jsp</code>
+                </div>
+              </div>
+            </div>
+            <p>
+              La fonctionnalité d'affichage des livres est celle qui vous demandera le moins de travail, elle est déjà
+              réalisée : la méthode <em>listeTousLesLivres()</em> de la classe <strong>ComposantBDLivre</strong> vous
+              est donnée à titre d'exemple.
+            </p>
+            <p>
+              La liste des livres est présentée dans un tableau permettant de faire un certain nombre de
+              manipulations sur l'ensemble des données : recherche, tris, etc.<br/>
+              Pour chacun des livres de la liste, un lien (colonne <em>Informations</em>) permet d'accéder à une page
+              autorisant la manipulation de celui-ci : modification, ajout/suppression d'exemplaire, etc.
+            </p>
+          </div>
+          <!--
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          -->
+          <div class="tab-pane fade" id="infos_livre-pills">
+            <hr/>
+            <h3>Informations sur un livre</h3>
+            <div class="col-lg-12">
+              <div class="col-lg-offset-7 col-lg-5">
+                <div class="alert alert-success">
+                  JSP : <code>WebContent/infos_livre.jsp</code>
+                </div>
+              </div>
+            </div>
+            <p>
+              La page donnant les informations sur un livre offre plusieurs fonctionnalités : gestion du livre à gauche de
+              la page et gestion des exemplaires associés à droite.
+            </p>
+            <h4>Gestion du livre</h4>
+            <p>
+              Sur la partie gauche, un formulaire s'affiche. Il reprend les informations du livre (isbn10 et 13, titre,
+              etc.), elles peuvent ensuite être modifiées. Le livre peut aussi être supprimé à l'aide de ce
+              formulaire.
+            </p>
+            <p>
+              Les méthodes nécessaires pour remplir ces fonctionnalités sont :
+            </p>
+						<div class="col-lg-12">
+						  <div class="col-lg-10 col-lg-offset-1">
+						    <div class="table-responsive">
+						      <table class="table">
+						        <thead>
+						          <tr>
+						            <th></th>
+						            <th>Classe</th>
+						            <th>Méthode</th>
+						          </tr>
+						        </thead>
+						        <tbody>
+						          <tr class="info">
+						            <td><strong>Récupération des informations sur le livre</strong></td>
+						            <td>ComposantBDLivre</td>
+						            <td><code>getLivre(int idLivre)</code></td>
+						          </tr>
+						          <tr class="info">
+						            <td><strong>Modification des informations</strong></td>
+						            <td>ComposantBDLivre</td>
+						            <td><code>modifierLivre(int idLivre, String isbn10, String isbn13, String titre, String auteur)</code></td>
+						          </tr>
+						          <tr class="info">
+						            <td><strong>Suppression du livre</strong></td>
+						            <td>ComposantBDLivre</td>
+						            <td><code>supprimerLivre(int idLivre)</code></td>
+						          </tr>
+						        </tbody>
+						      </table>
+						    </div> <!-- /.table-responsive -->
+						  </div> <!-- /.col-lg-10 col-lg-offset-1 -->
+						</div> <!-- /.col-lg-12 -->
+            
+            <h4>Gestion des exemplaires</h4>
+            <p>
+              La gestion des exemplaires en partie droite affiche le nombre total d'exemplaires associés au livre et pour
+              chacun d'entre-eux, leur disponibilité (emprunté ou non). Deux fonctionnalités sont aussi disponibles : il
+              est possible d'ajouter un nouvel exemplaire et de supprimer un exemplaire donné.
+            </p>
+            <p>
+              Les méthodes nécessaires sont :
+            </p>
+						<div class="col-lg-12">
+						  <div class="col-lg-10 col-lg-offset-1">
+						    <div class="table-responsive">
+						      <table class="table">
+						        <thead>
+						          <tr>
+						            <th></th>
+						            <th>Classe</th>
+						            <th>Méthode</th>
+						          </tr>
+						        </thead>
+						        <tbody>
+						          <tr class="info">
+						            <td><strong>Afficher le nombre d'exemplaires associés au livre</strong></td>
+						            <td>ComposantBDLivre</td>
+						            <td><code>nbExemplaires(int idLivre)</code></td>
+						          </tr>
+						          <tr class="info">
+						            <td><strong>Afficher la liste des exemplaires associés au livre</strong></td>
+						            <td>ComposantBDLivre</td>
+						            <td><code>listeExemplaires(int idLivre)</code></td>
+						          </tr>
+						          <tr class="info">
+						            <td><strong>Ajouter un nouvel exemplaire pour le livre</strong></td>
+						            <td>ComposantBDLivre</td>
+						            <td><code>ajouterExemplaire(int idLivre)</code></td>
+						          </tr>
+						          <tr class="info">
+						            <td><strong>Suppression d'un exemplaire donné</strong></td>
+						            <td>ComposantBDLivre</td>
+						            <td><code>supprimerExemplaire(int idExemplaire)</code></td>
+						          </tr>
+						          <tr class="info">
+						            <td><strong>Afficher la disponibilité d'un exemplaire donné</strong></td>
+						            <td>ComposantBDEmprunt</td>
+						            <td><code>estEmprunte(int idExemplaire)</code></td>
+						          </tr>
+						        </tbody>
+						      </table>
+						    </div> <!-- /.table-responsive -->
+						  </div> <!-- /.col-lg-10 col-lg-offset-1 -->
+						</div> <!-- /.col-lg-12 -->
+          </div>
+          <!--
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          -->
+          <div class="tab-pane fade" id="nouveau_livre-pills">
+            <hr/>
+            <h3>Insertion d'un livre</h3>
+            <div class="col-lg-12">
+              <div class="col-lg-offset-7 col-lg-5">
+                <div class="alert alert-success">
+                  JSP : <code>WebContent/inserer_livre.jsp</code>
+                </div>
+              </div>
+            </div>
+            <p>
+              La page d'insertion d'un livre affiche un simple formulaire permettant la saisie des données
+              nécessaires à l'identification d'un livre. Une fois les données saisies et le livre enregistré
+              dans la base de données, ces informations sont affichées sur la page.
+            </p>
+            <p>
+              Les méthodes nécessaires sont :
+            </p>
+            <div class="col-lg-12">
+              <div class="col-lg-10 col-lg-offset-1">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Classe</th>
+                        <th>Méthode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="info">
+                        <td><strong>Insertion d'un nouveau livre dans la base de données</strong></td>
+                        <td>ComposantBDLivre</td>
+                        <td><code>insererNouveauLivre(String isbn10, String isbn13, String titre, String auteur)</code></td>
+                      </tr>
+                      <tr class="info">
+                        <td><strong>Récupération des informations sur le livre</strong></td>
+                        <td>ComposantBDLivre</td>
+                        <td><code>getLivre(int idLivre)</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> <!-- /.table-responsive -->
+              </div> <!-- /.col-lg-10 col-lg-offset-1 -->
+            </div> <!-- /.col-lg-12 -->
+          </div>
+          <!--
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          -->
+          <div class="tab-pane fade" id="liste_abonnes-pills">
+            <hr/>
+            <h3>Liste des abonnés</h3>
+            <div class="col-lg-12">
+              <div class="col-lg-offset-7 col-lg-5">
+                <div class="alert alert-success">
+                  JSP : <code>WebContent/liste_abonnes.jsp</code>
+                </div>
+              </div>
+            </div>
+            <p>
+              La page affichant la liste des abonnés est en tous points similaire à celle affichant la liste des livres. Des
+              manipulations sur l'ensemble des données de type recherche, tris, etc. sont possibles.<br/>
+              Pour chacun des abonnés de la liste, un lien (colonne <em>Informations</em>) permet d'accéder à une page
+              autorisant la manipulation de celui-ci : modification, etc.
+            </p>
+             <p>
+              Une seule méthode est nécessaire :
+            </p>
+            <div class="col-lg-12">
+              <div class="col-lg-10 col-lg-offset-1">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Classe</th>
+                        <th>Méthode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="info">
+                        <td><strong>Récupération de la liste de tous les abonnés</strong></td>
+                        <td>ComposantBDAbonne</td>
+                        <td><code>listeTousLesAbonnes()</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> <!-- /.table-responsive -->
+              </div> <!-- /.col-lg-10 col-lg-offset-1 -->
+            </div> <!-- /.col-lg-12 -->
+          </div>
+          <!--
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          -->
+          <!--
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          -->
+          <div class="tab-pane fade" id="infos_abonne-pills">
+            <hr/>
+            <h3>Informations sur un abonné</h3>
+            <div class="col-lg-12">
+              <div class="col-lg-offset-7 col-lg-5">
+                <div class="alert alert-success">
+                  JSP : <code>WebContent/infos_abonne.jsp</code>
+                </div>
+              </div>
+            </div>
+            <p>
+              Comme pour un livre, la page donnant les informations sur un abonné offre plusieurs fonctionnalités : gestion
+              de l'abonné à gauche de la page et affichage des emprunts de l'abonné à droite.
+            </p>
+            <h4>Gestion de l'abonné</h4>
+            <p>
+              Sur la partie gauche, un formulaire affiche les informations de l'abonné (nom, prénom, etc.), elles peuvent
+              ensuite être modifiées. L'abonné peut aussi être supprimé à l'aide de ce formulaire.
+            </p>
+            <p>
+              Les méthodes nécessaires sont :
+            </p>
+            <div class="col-lg-12">
+              <div class="col-lg-10 col-lg-offset-1">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Classe</th>
+                        <th>Méthode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="info">
+                        <td><strong>Récupération des informations sur l'abonné</strong></td>
+                        <td>ComposantBDAbonne</td>
+                        <td><code>getAbonne(int idAbonne)</code></td>
+                      </tr>
+                      <tr class="info">
+                        <td><strong>Modification des informations</strong></td>
+                        <td>ComposantBDAbonne</td>
+                        <td><code>modifierAbonne(int idAbonne, String nom, String prenom, String statut, String email)</code></td>
+                      </tr>
+                      <tr class="info">
+                        <td><strong>Suppression de l'abonné</strong></td>
+                        <td>ComposantBDAbonne</td>
+                        <td><code>supprimerAbonne(int idAbonne)</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> <!-- /.table-responsive -->
+              </div> <!-- /.col-lg-10 col-lg-offset-1 -->
+            </div> <!-- /.col-lg-12 -->
+            <h4>Affichage des emprunts de l'abonné</h4>
+            <p>
+              En partie droite, la page affiche les emprunts de l'abonné.
+            </p>
+            <p>
+              Deux méthodes sont nécessaires :
+            </p>
+            <div class="col-lg-12">
+              <div class="col-lg-10 col-lg-offset-1">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Classe</th>
+                        <th>Méthode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="info">
+                        <td><strong>Afficher le nombre d'emprunts en cours de l'abonné</strong></td>
+                        <td>ComposantBDEmprunt</td>
+                        <td><code>nbEmpruntsEnCours(int idAbonne)</code></td>
+                      </tr>
+                      <tr class="info">
+                        <td><strong>Afficher la liste des emprunts en cours de l'abonné</strong></td>
+                        <td>ComposantBDEmprunt</td>
+                        <td><code>listeEmpruntsEnCours(int idAbonne)</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> <!-- /.table-responsive -->
+              </div> <!-- /.col-lg-10 col-lg-offset-1 -->
+            </div> <!-- /.col-lg-12 -->
+            
+          </div>
+          <!--
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          -->
+          <div class="tab-pane fade" id="nouvel_abonne-pills">
+            <hr/>
+            <h3>Insertion d'un abonné</h3>
+            <div class="col-lg-12">
+              <div class="col-lg-offset-7 col-lg-5">
+                <div class="alert alert-success">
+                  JSP : <code>WebContent/inserer_abonne.jsp</code>
+                </div>
+              </div>
+            </div>
+            <p>
+              La page d'insertion d'un abonné affiche un simple formulaire permettant la saisie des données
+              nécessaires à l'identification d'un abonné. Une fois les données saisies et l'abonné enregistré
+              dans la base de données, ces informations sont affichées sur la page.
+            </p>
+            <p>
+              Les méthodes nécessaires sont :
+            </p>
+            <div class="col-lg-12">
+              <div class="col-lg-10 col-lg-offset-1">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Classe</th>
+                        <th>Méthode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="info">
+                        <td><strong>Insertion d'un nouvel abonné dans la base de données</strong></td>
+                        <td>ComposantBDAbonne</td>
+                        <td><code>insererNouvelAbonne(String nom, String prenom, String statut, String email)</code></td>
+                      </tr>
+                      <tr class="info">
+                        <td><strong>Récupération des informations sur l'abonné</strong></td>
+                        <td>ComposantBDAbonne</td>
+                        <td><code>getAbonne(int idAbonne)</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> <!-- /.table-responsive -->
+              </div> <!-- /.col-lg-10 col-lg-offset-1 -->
+            </div> <!-- /.col-lg-12 -->
+          </div>
+          <!--
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          -->
+          <div class="tab-pane fade" id="emprunter-pills">
+            <hr/>
+            <h3>Emprunter un exemplaire</h3>
+            <div class="col-lg-12">
+              <div class="col-lg-offset-7 col-lg-5">
+                <div class="alert alert-success">
+                  JSP : <code>WebContent/emprunter_exemplaire.jsp</code>
+                </div>
+              </div>
+            </div>
+            <p>
+              L'emprunt d'un exemplaire se fait par l'intermédiare d'un simple formulaire dans lequel sont saisis
+              l'identifiant de l'exemplaire emprunté et l'identifiant de l'abonné emprunteur.
+            </p>
+            <p>
+              Une fois l'emprunt réalisé, la page affiche les informations liées à l'emprunt :
+              <ul>
+                <li>Le titre du livre associé à l'exemplaire</li>
+                <li>L'identifiant de l'exemplaire</li>
+                <li>Le nom et le prénom de l'emprunteur</li>
+              </ul> 
+            </p>
+            <p>
+              Les méthodes nécessaires sont :
+            </p>
+            <div class="col-lg-12">
+              <div class="col-lg-10 col-lg-offset-1">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Classe</th>
+                        <th>Méthode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="info">
+                        <td><strong>Emprunt d'un exemplaire par un abonné</strong></td>
+                        <td>ComposantBDEmprunt</td>
+                        <td><code>emprunter(int idAbonne, int idExemplaire)</code></td>
+                      </tr>
+                      <tr class="info">
+                        <td><strong>Récupération des informations du livre associé à l'exemplaire</strong></td>
+                        <td>ComposantBDLivre</td>
+                        <td><code>getLivreParIdExemplaire(int idExemplaire)</code></td>
+                      </tr>
+                      <tr class="info">
+                        <td><strong>Récupération des informations sur l'abonné</strong></td>
+                        <td>ComposantBDAbonne</td>
+                        <td><code>getAbonne(int idAbonne)</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> <!-- /.table-responsive -->
+              </div> <!-- /.col-lg-10 col-lg-offset-1 -->
+            </div> <!-- /.col-lg-12 -->
+          </div>
+          <!--
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          -->
+          <div class="tab-pane fade" id="retourner-pills">
+            <hr/>
+            <h3>Retourner un exemplaire</h3>
+            <div class="col-lg-12">
+              <div class="col-lg-offset-7 col-lg-5">
+                <div class="alert alert-success">
+                  JSP : <code>WebContent/retourner_exemplaire.jsp</code>
+                </div>
+              </div>
+            </div>
+            <p>
+              Le retour d'un exemplaire se fait par l'intermédiare d'un simple formulaire dans lequel est saisi
+              l'identifiant de l'exemplaire à retourner.
+            </p>
+            <p>
+              Cette page peut être appelée à partir du menu de l'application mais est est aussi appelée à partir
+              d'autres pages de l'application (liste des emprunts). Dans ce cas, la valeur de l'identifiant de
+              l'exemplaire est automatiquement renseignée dans le formulaire : voir le paramètre dans l'URL d'appel
+              de la page.
+            </p>
+            <p>
+              Une fois le retour réalisé, la page affiche les informations suivantes :
+              <ul>
+                <li>Le titre du livre associé à l'exemplaire</li>
+                <li>L'identifiant de l'exemplaire</li>
+              </ul> 
+            </p>
+            <p>
+              Les méthodes nécessaires sont :
+            </p>
+            <div class="col-lg-12">
+              <div class="col-lg-10 col-lg-offset-1">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Classe</th>
+                        <th>Méthode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="info">
+                        <td><strong>Retour d'un exemplaire</strong></td>
+                        <td>ComposantBDEmprunt</td>
+                        <td><code>rendre(int idExemplaire)</code></td>
+                      </tr>
+                      <tr class="info">
+                        <td><strong>Récupération des informations du livre associé à l'exemplaire</strong></td>
+                        <td>ComposantBDLivre</td>
+                        <td><code>getLivreParIdExemplaire(int idExemplaire)</code></td>
+                      </tr>
+                      <tr class="info">
+                        <td><strong>Récupération des informations sur l'abonné</strong></td>
+                        <td>ComposantBDAbonne</td>
+                        <td><code>getAbonne(int idAbonne)</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> <!-- /.table-responsive -->
+              </div> <!-- /.col-lg-10 col-lg-offset-1 -->
+            </div> <!-- /.col-lg-12 -->
+          </div>
+          <!--
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          -->
+          <div class="tab-pane fade" id="emprunts-pills">
+            <hr/>
+            <h3>Liste des emprunts en cours</h3>
+            <div class="col-lg-12">
+              <div class="col-lg-offset-7 col-lg-5">
+                <div class="alert alert-success">
+                  JSP : <code>WebContent/emprunts_en_cours.jsp</code>
+                </div>
+              </div>
+            </div>
+            <p>
+              La liste des emprunts en cours affiche les informations relatives aux emprunts : identifiant de l'exemplaire,
+              titre et auteur du livre, nom et prénom de l'emprunteur, la date de l'emprunt. Un lien vers la page de retour
+              de l'exemplaire est aussi présent.
+            </p>
+            <p>
+              Une seule méthode est nécessaire pour cette fonctionnalité :
+            </p>
+            <div class="col-lg-12">
+              <div class="col-lg-10 col-lg-offset-1">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Classe</th>
+                        <th>Méthode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="info">
+                        <td><strong>Récupération de la liste des emprunts en cours</strong></td>
+                        <td>ComposantBDEmprunt</td>
+                        <td><code>listeEmpruntsEnCours()</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> <!-- /.table-responsive -->
+              </div> <!-- /.col-lg-10 col-lg-offset-1 -->
+            </div> <!-- /.col-lg-12 -->
+          </div>
+          <!--
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          -->
+          <div class="tab-pane fade" id="historique-pills">
+            <hr/>
+            <h3>Historique des emprunts</h3>
+            <div class="col-lg-12">
+              <div class="col-lg-offset-7 col-lg-5">
+                <div class="alert alert-success">
+                  JSP : <code>WebContent/emprunts_historique.jsp</code>
+                </div>
+              </div>
+            </div>
+            <p>
+              L'historique des emprunts affiche les informations sur les emprunts rendus. Les informations affichées sont
+              similaires à la liste des emprunts en cours, la date de retour est ajoutée.
+            </p>
+            <p>
+              Une seule méthode est nécessaire pour cette fonctionnalité :
+            </p>
+            <div class="col-lg-12">
+              <div class="col-lg-10 col-lg-offset-1">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Classe</th>
+                        <th>Méthode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="info">
+                        <td><strong>Récupération de l'historique des emprunts</strong></td>
+                        <td>ComposantBDEmprunt</td>
+                        <td><code>listeEmpruntsHistorique()</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> <!-- /.table-responsive -->
+              </div> <!-- /.col-lg-10 col-lg-offset-1 -->
+            </div> <!-- /.col-lg-12 -->
+          </div>
+          <!--
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          -->
+          <div class="tab-pane fade" id="stats-pills">
+            <hr/>
+            <h3>Statistiques des emprunts</h3>
+            <div class="col-lg-12">
+              <div class="col-lg-offset-6 col-lg-6">
+                <div class="alert alert-success">
+                  JSP : <code>WebContent/accueil.jsp</code><br/>
+                  JSP : <code>WebContent/fragments/fin_de_page.jsp</code>
+                </div>
+              </div>
+            </div>
+            <h4>Travail optionnel</h4>
+            <p>
+              Les statistiques des emprunts (un bien grand mot...) s'affichent sur la page d'accueil : il s'agit du graphique
+              intitulé <em>Mouvements de la bibliothèque</em> qui représente les deux courbes affichant jour par jour le
+              nombre d'emprunts et le nombre de retours.
+            </p>
+            <p>
+              Par défaut cette fonctionnalité est désactivée. Pour pouvoir l'afficher, il est nécessaire de décommenter
+              l'affichage du graphique dans le JSP <code>accueil.jsp</code> : suppression aux lignes 86 et 95 des marques
+              de début et de fin de commentaires : <code><%--</code> et <code>--%></code>.<br/>
+              Une fois cette étape réalisée, le cadre <em>Mouvements de la bibliothèque</em> s'affiche mais sans les deux courbes,
+              le code permettant l'affichage de celles-ci ne dispose encore d'aucune donnée à afficher.
+            </p>
+            <p>
+              Pour récupérer les données nécessaires à l'affichage des courbes, la méthode suivante est nécessaire :
+            </p>
+            <div class="col-lg-12">
+              <div class="col-lg-10 col-lg-offset-1">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Classe</th>
+                        <th>Méthode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="info">
+                        <td><strong>Statistique des emprunts</strong></td>
+                        <td>ComposantBDEmprunt</td>
+                        <td><code>statsEmprunts()</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> <!-- /.table-responsive -->
+              </div> <!-- /.col-lg-10 col-lg-offset-1 -->
+            </div> <!-- /.col-lg-12 -->
+            <div class="col-lg-12">
+		            <div class="alert alert-danger">
+			            <ul>
+			              <li>
+			                <strong>Note 1</strong><br/>
+			                La méthode <code>statsEmprunts()</code> retourne une structure de
+			                données complexe de type <code>Map</code> : <code>HashMap&lt;String, int[]&gt;</code>. Ce type de
+			                structures de données stockent des couples (<em>clé</em> --> <em>valeur</em>).<br/>
+			                Ici, la clé est une chaîne de caractère (<code>String</code>) : la date, par exemple :
+			                <code>"2016-12-07"</code>. La valeur associée est un tableau de deux entiers (<code>int[]</code>)
+			                stockant le nombre d'emprunts à l'indice 0 et le nombre de retour à l'indice 1.<br/>
+			                Pour plus d'informations sur ce type de structures de données, voir par exemple :
+			                <a href="https://openclassrooms.com/courses/java-et-les-collections/l-interface-map-k-v" target="_blank">https://openclassrooms.com/courses/java-et-les-collections/l-interface-map-k-v</a>.
+			              </li>
+			              <li>
+                      <strong>Note 2</strong><br/>
+                      Les données présentes dans la structure Java au retour de l'appel de la méthode <code>statsEmprunts()</code>
+                      ont besoin d'être traduites dans un format texte afin d'être manipulées par le graphique. C'est la raison
+                      d'être du code présent au début du JSP <code>WebContent/fragments/fin_de_page.jsp</code>.<br/>
+			              </li>
+                    <li>
+                      <strong>Note 3</strong><br/>
+                      L'affichage du graphique est dévolue à une bibliothèque Javascript (bibliothèque <em>morris.js</em>), l'appel
+                      est réalisé à la fin du JSP <code>WebContent/fragments/fin_de_page.jsp</code>.<br/>
+                      Pour plus d'informations sur cette librairie d'affichage de graphiques pour le Web :
+                      <a href="http://morrisjs.github.io/morris.js/" target="_blank">http://morrisjs.github.io/morris.js/</a>.
+                    </li>
+			            </ul>
+		            </div>
+            </div> <!-- /.col-lg-12 -->
+          </div>
+          <!--
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          -->
+        </div>
+      </div> <!-- /.panel-body -->
+    </div> <!-- /.panel -->
+  </div> <!-- /.col-lg-12 -->
+</div> <!-- /.row -->
+

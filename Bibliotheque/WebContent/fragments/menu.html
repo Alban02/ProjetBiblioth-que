@@ -1,0 +1,58 @@
+<div class="navbar-default sidebar" role="navigation">
+  <div class="sidebar-nav navbar-collapse">
+  
+    <ul class="nav" id="side-menu">
+      <!-- <li class="sidebar-search">
+        <div class="input-group custom-search-form">
+          <input type="text" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+          </span>
+        </div> /input-group
+      </li> -->
+
+
+
+      <!--
+        MENU PRINCIPAL
+      -->
+
+      <li><a href="index.jsp"><i class="fa fa-home"></i> Accueil</a></li>
+      <li>
+        <a href="#"><i class="glyphicon glyphicon-book"></i> Gestion des livres<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li><a href="template.jsp?action=liste_livres">Liste des livres</a></li>
+          <li><a href="template.jsp?action=inserer_livre">Insertion d'un nouveau livre</a></li>
+        </ul> <!-- /.nav-second-level -->
+      </li>
+      <li>
+        <a href="#"><i class="fa fa-users"></i> Gestion des abonnés<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li><a href="template.jsp?action=liste_abonnes">Liste des abonnés</a></li>
+          <li><a href="template.jsp?action=inserer_abonne">Insertion d'un nouvel abonné</a></li>
+        </ul> <!-- /.nav-second-level -->
+      </li>
+      <li>
+        <a href="#"><i class="glyphicon glyphicon-transfer"></i> Gestion des emprunts<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li><a href="template.jsp?action=emprunter_exemplaire">Emprunter</a></li>
+          <li><a href="template.jsp?action=retourner_exemplaire">Retourner</a></li>
+          <li><a href="template.jsp?action=emprunts_en_cours">Emprunts en cours</a></li>
+          <li><a href="template.jsp?action=emprunts_historique">Historique des emprunts</a></li>
+        </ul> <!-- /.nav-second-level -->
+      </li>
+
+
+
+      <!--
+        MENU SECONDAIRE
+      -->
+
+      <li><h1>&nbsp;</h1></li>
+      <li><a href="template.jsp?action=help"><i class="fa fa-question-circle"></i> Aide</a></li>
+      <li><a href="http://srv-labs-006.enst-bretagne.fr/bibliotheque/" target="_blank"><i class="fa fa-certificate"></i> Démonstration du prototype</a></li>
+      <li><a href="bootstrap/pages/" target="_blank"><i class="fa fa-thumbs-up"></i> Démo du template SB Admin 2</a></li>
+      
+    </ul>
+  </div> <!-- /.sidebar-collapse -->
+</div> <!-- /.navbar-static-side -->
