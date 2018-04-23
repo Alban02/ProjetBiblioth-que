@@ -64,7 +64,7 @@ public class ComposantBDLivre {
 	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
 	String sql = "select distinct count(id) from livre"; // Requête à exécuter.
 	ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
-	rset.next(); // On va à la première de données du rset.
+	rset.next(); // On va à la première ligne de données du rset.
 	
 	int nbLivres = rset.getInt(1); // On récupère le count à la première colonne.
 	
@@ -164,7 +164,7 @@ public class ComposantBDLivre {
   public static int insererNouveauLivre(String isbn10, String isbn13, String titre, String auteur) throws SQLException {
     
 	// On vérifie l'isbn du livre à insérer.
-	String sql = "select * from livre where isbn10 = ? 	or  isbn13 = ?"; // Requête à exécuter.
+	String sql = "select * from livre where isbn10 = ? 	or  isbn13 = ?"; // Requête préparée à exécuter.
 	PreparedStatement pstmt = Connexion.getConnection().prepareStatement(sql); // Création de la connexion à la BD pour faire une requête préparée.
 	pstmt.setString(1, isbn10); // On définit le premier ? de sql à isbn10.
 	pstmt.setString(2, isbn13); // On définit le deuxième ? de sql à isbn13.
@@ -175,7 +175,7 @@ public class ComposantBDLivre {
 	
 	int insert = 0; // Une variable pour vérifier le succès ou non de l'insertion.
 	
-	String sql1 = "insert into livre values(nextval('livre_id_seq'), ?, ?, ?, ?)"; // Requête à exécuter.
+	String sql1 = "insert into livre values(nextval('livre_id_seq'), ?, ?, ?, ?)"; // Requête préparée à exécuter.
 	PreparedStatement pstmt1 = Connexion.getConnection().prepareStatement(sql1); // Création d'une autre connexion à la BD pour faire une requête préparée.
 	pstmt1.setString(1, isbn10); // On définit le premier ? de sql1 à isbn10.
 	pstmt1.setString(2, isbn13); // On définit le deuxième ? de sql1 à isbn13.
@@ -216,7 +216,7 @@ public class ComposantBDLivre {
    */
   public static void modifierLivre(int idLivre, String isbn10, String isbn13, String titre, String auteur) throws SQLException {
     
-	  String sql = "update livre set isbn10 = ?, isbn13 = ?, titre = ?, auteur = ? where id = ? "; // Requête à exécuter.
+	  String sql = "update livre set isbn10 = ?, isbn13 = ?, titre = ?, auteur = ? where id = ? "; // Requête préparée à exécuter.
 	  
 	  PreparedStatement pstmt = Connexion.getConnection().prepareStatement(sql); // Création de la connexion à la BD pour faire une requête préparée.
 	  pstmt.setString(1, isbn10); // On définit le premier ? de sql à isbn10.
