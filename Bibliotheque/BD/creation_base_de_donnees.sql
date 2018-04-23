@@ -69,7 +69,6 @@ insert into livre values(nextval('livre_id_seq'), '2203001011',    '978-22030010
 insert into livre values(nextval('livre_id_seq'), '2012011373',    '978-2012011373',    'Le Club des Cinq et le trésor de l''île', 'Enid BLYTON');     -- id = 7
 
 insert into exemplaire values(nextval('exemplaire_id_seq'), 1);		-- id = 1
-insert into exemplaire values(nextval('exemplaire_id_seq'), 1);		-- id = 2
 
 insert into abonne values(nextval('abonne_id_seq'), 'GOUGOUA',		'Alban',		'Etudiant',		'alban.gougoua@imt-atlantique.net');		-- id = 1
 insert into abonne values(nextval('abonne_id_seq'), 'KOUASSI',		NULL,			'Etudiant',		NULL);										-- id = 2

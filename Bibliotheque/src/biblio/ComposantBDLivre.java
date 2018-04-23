@@ -30,26 +30,27 @@ public class ComposantBDLivre {
    */
   public static ArrayList<String[]> listeTousLesLivres() throws SQLException {
 
-    ArrayList<String[]> livres = new ArrayList<String[]>();
-
-    Statement stmt = Connexion.getConnection().createStatement();
-    String sql = "select * from livre";
-    ResultSet rset = stmt.executeQuery(sql);
-
-    while (rset.next()) {
-      String[] livre = new String[5];
-      livre[0] = rset.getString("id");
-      livre[1] = rset.getString("isbn10");
-      livre[2] = rset.getString("isbn13");
-      livre[3] = rset.getString("titre");
-      livre[4] = rset.getString("auteur");
-
-      livres.add(livre);
-    }
-    rset.close();
-    stmt.close();
-
-    return livres;
+	ArrayList<String[]> livres = new ArrayList<String[]>(); // Création de la liste de tous les livres.
+	
+	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+	String sql = "select * from livre"; // Requête à exécuter.
+	ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
+	
+	while (rset.next()) { // Récupération de chaque élément en ligne et colonne de la table des données en parcourant ligne par ligne de l'objet rset.
+	  String[] livre = new String[5];
+	  livre[0] = rset.getString("id");
+	  livre[1] = rset.getString("isbn10");
+	  livre[2] = rset.getString("isbn13");
+	  livre[3] = rset.getString("titre");
+	  livre[4] = rset.getString("auteur");
+	
+	  livres.add(livre); // On récupère chaque livre qu'on ajoute dans la liste de tous les livres.
+	}
+	
+	rset.close(); // Suppression de l'objet créé.
+	stmt.close(); // Fermeture de la connexion créée.
+	
+	return livres; // On retourne la liste de tous les livres.
   }
 
   /**
@@ -60,17 +61,17 @@ public class ComposantBDLivre {
    */
   public static int nbLivres() throws SQLException {
     
-	Statement stmt = Connexion.getConnection().createStatement();
-	String sql = "select distinct count(id) from livre";
-	ResultSet rset = stmt.executeQuery(sql);
-	rset.next();
+	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+	String sql = "select distinct count(id) from livre"; // Requête à exécuter.
+	ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
+	rset.next(); // On va à la première de données du rset.
 	
-    int nbLivres = rset.getInt(1);
-    
-    rset.close();
-    stmt.close();
+	int nbLivres = rset.getInt(1); // On récupère le count à la première colonne.
 	
-    return nbLivres;
+	rset.close(); // Suppression de l'objet créé.
+	stmt.close(); // Fermeture de la connexion créée.
+	
+	return nbLivres; // On retourne le nombre des livres.
   }
 
   /**
@@ -90,23 +91,24 @@ public class ComposantBDLivre {
    */
    public static String[] getLivre(int idLivre) throws SQLException {
      
-	 String[] livre = new String[5];
+	 String[] livre = new String[5]; // Création du tableau de chaînes de caractères pour recevoir les données du livre.
 	 
-     Statement stmt = Connexion.getConnection().createStatement();
-     String sql = "select * from livre where id=" + idLivre;
-     ResultSet rset = stmt.executeQuery(sql);
-     rset.next();
-     
-     livre[0] = rset.getString("id");
-     livre[1] = rset.getString("isbn10");
-     livre[2] = rset.getString("isbn13");
-     livre[3] = rset.getString("titre");
-     livre[4] = rset.getString("auteur");
-     
-     rset.close();
-     stmt.close();
-     
-     return livre;
+	 Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+	 String sql = "select * from livre where id=" + idLivre; // Requête à exécuter.
+	 ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
+	 
+	 while(rset.next()) { // Récupération de chaque élément en colonne de la table des données.
+		 livre[0] = rset.getString("id");
+		 livre[1] = rset.getString("isbn10");
+		 livre[2] = rset.getString("isbn13");
+		 livre[3] = rset.getString("titre");
+		 livre[4] = rset.getString("auteur");
+	 }
+	 
+	 rset.close(); // Suppression de l'objet créé.
+	 stmt.close(); // Fermeture de la connexion créée.
+	 
+	 return livre; // On retourne le livre.
    }
   
  /**
@@ -128,25 +130,25 @@ public class ComposantBDLivre {
   */
   public static String[] getLivreParIdExemplaire(int idExemplaire) throws SQLException {
     
-	String[] livre = new String[6];
-    
-    Statement stmt = Connexion.getConnection().createStatement();
-    String sql = "select e.id, l.* from livre l join exemplaire e on e.idLivre = l.id where e.id =" + idExemplaire;
-    ResultSet rset = stmt.executeQuery(sql);
-    
-    while(rset.next()) {
-    	livre[0] = rset.getString("id");
-        livre[1] = rset.getString("id");
-        livre[2] = rset.getString("isbn10");
-        livre[3] = rset.getString("isbn13");
-        livre[4] = rset.getString("titre");
-        livre[5] = rset.getString("auteur");
-    }
-    
-    rset.close();
-    stmt.close();
-    
-    return livre;
+	String[] livre = new String[6]; // Création du tableau de chaînes de caractères pour recevoir les données du livre.
+	
+	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+	String sql = "select e.id, l.* from livre l join exemplaire e on e.idLivre = l.id where e.id =" + idExemplaire; // Requête à exécuter.
+	ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
+	
+	while(rset.next()) { // Récupération de chaque élément en colonne de la table des données.
+		livre[0] = rset.getString("id");
+	    livre[1] = rset.getString("id");
+	    livre[2] = rset.getString("isbn10");
+	    livre[3] = rset.getString("isbn13");
+	    livre[4] = rset.getString("titre");
+	    livre[5] = rset.getString("auteur");
+	}
+	
+	rset.close(); // Suppression de l'objet créé.
+	stmt.close(); // Fermeture de la connexion créée.
+	
+	return livre; // On retourne le livre.
   }
 
   /**
@@ -162,41 +164,41 @@ public class ComposantBDLivre {
   public static int insererNouveauLivre(String isbn10, String isbn13, String titre, String auteur) throws SQLException {
     
 	// On vérifie l'isbn du livre à insérer.
-	String sql = "select * from livre where isbn10 = ? 	or  isbn13 = ?";
-	PreparedStatement pstmt = Connexion.getConnection().prepareStatement(sql);
-	pstmt.setString(1, isbn10);
-	pstmt.setString(2, isbn13);
-	ResultSet prset = pstmt.executeQuery();
-	if(prset.next()) {
+	String sql = "select * from livre where isbn10 = ? 	or  isbn13 = ?"; // Requête à exécuter.
+	PreparedStatement pstmt = Connexion.getConnection().prepareStatement(sql); // Création de la connexion à la BD pour faire une requête préparée.
+	pstmt.setString(1, isbn10); // On définit le premier ? de sql à isbn10.
+	pstmt.setString(2, isbn13); // On définit le deuxième ? de sql à isbn13.
+	ResultSet prset = pstmt.executeQuery();  // Création de la table des données après exécution de la requête.
+	if(prset.next()) { // On va à la première ligne de données du prset.
 		return -1; // Echec de la requête.
 	}
 	
 	int insert = 0; // Une variable pour vérifier le succès ou non de l'insertion.
 	
-	String sql1 = "insert into livre values(nextval('livre_id_seq'), ?, ?, ?, ?)";
-	PreparedStatement pstmt1 = Connexion.getConnection().prepareStatement(sql1);
-	pstmt1.setString(1, isbn10);
-	pstmt1.setString(2, isbn13);
-	pstmt1.setString(3, titre);
-	pstmt1.setString(4, auteur);
-	insert = pstmt1.executeUpdate(); 
-	pstmt1.close();
+	String sql1 = "insert into livre values(nextval('livre_id_seq'), ?, ?, ?, ?)"; // Requête à exécuter.
+	PreparedStatement pstmt1 = Connexion.getConnection().prepareStatement(sql1); // Création d'une autre connexion à la BD pour faire une requête préparée.
+	pstmt1.setString(1, isbn10); // On définit le premier ? de sql1 à isbn10.
+	pstmt1.setString(2, isbn13); // On définit le deuxième ? de sql1 à isbn13.
+	pstmt1.setString(3, titre); // On définit le troisième ? de sql1 à titre.
+	pstmt1.setString(4, auteur); // On définit le quatrième ? de sql1 à auteur.
+	insert = pstmt1.executeUpdate(); // On met le résultat de la requête dans insert.
+	pstmt1.close(); // Fermeture de la connexion créée.
 	
-	if(insert == 0) {		 
+	if(insert == 0) { // On vérifie si l'insertion n'a pas réussi.
 		return -1; // Echec de la requête.
 	}
-	else {
-		Statement stmt = Connexion.getConnection().createStatement();
-		String sql2 = "select currval('livre_id_seq') as current_id_Livre";
-		ResultSet rset = stmt.executeQuery(sql2);
-		rset.next();
+	else { // Insertion réussie.
+		Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+		String sql2 = "select currval('livre_id_seq')"; // Requête à exécuter.
+		ResultSet rset = stmt.executeQuery(sql2); // Création de la table des données après exécution de la requête.
+		rset.next(); // On va à la première ligne de données du rset.
 		
-		int id = rset.getInt("current_id_Livre");
+		int id = rset.getInt(1); // On récupère l'id du livre.
 		
-		rset.close();
-		stmt.close();
+		rset.close(); // Suppression de l'objet créé.
+		stmt.close(); // Fermeture de la connexion créée.
 		  
-		return id;
+		return id; // On retourne l'id du livre.
 	}
   }
   
@@ -214,18 +216,17 @@ public class ComposantBDLivre {
    */
   public static void modifierLivre(int idLivre, String isbn10, String isbn13, String titre, String auteur) throws SQLException {
     
-	  String sql = "update livre set isbn10 = ?, isbn13 = ?, titre = ?, auteur = ? where id = ? ";
+	  String sql = "update livre set isbn10 = ?, isbn13 = ?, titre = ?, auteur = ? where id = ? "; // Requête à exécuter.
 	  
-	  PreparedStatement pstmt = Connexion.getConnection().prepareStatement(sql);
-	  pstmt.setString(1, isbn10);
-	  pstmt.setString(2, isbn13);
-	  pstmt.setString(3, titre);
-	  pstmt.setString(4, auteur);
-	  pstmt.setInt(5, idLivre);
+	  PreparedStatement pstmt = Connexion.getConnection().prepareStatement(sql); // Création de la connexion à la BD pour faire une requête préparée.
+	  pstmt.setString(1, isbn10); // On définit le premier ? de sql à isbn10.
+	  pstmt.setString(2, isbn13); // On définit le deuxième ? de sql à isbn13.
+	  pstmt.setString(3, titre); // On définit le troisième ? de sql à titre.
+	  pstmt.setString(4, auteur); // On définit le quatrième ? de sql à auteur.
+	  pstmt.setInt(5, idLivre); // On définit le cinquième ? de sql à idLivre.
 	  
-	  pstmt.executeUpdate(); 
-	  
-	  pstmt.close();
+	  pstmt.executeUpdate(); // On exécute la requête.
+	  pstmt.close(); // Fermeture de la connexion créée.
   }
 
   /**
@@ -247,10 +248,11 @@ public class ComposantBDLivre {
 	  }
 	  
 	  // Suppression du livre.
-	  Statement stmt = Connexion.getConnection().createStatement();
-	  String sql = "delete from livre where id=" + idLivre;
-	  stmt.executeUpdate(sql);
-	  stmt.close();
+	  Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+	  String sql = "delete from livre where id=" + idLivre; // Requête à exécuter.
+	  stmt.executeUpdate(sql); // On exécute la requête.
+	  
+	  stmt.close(); // Fermeture de la connexion créée.
    }
 
    /**
@@ -263,17 +265,17 @@ public class ComposantBDLivre {
     */
    public static int nbExemplaires(int idLivre) throws SQLException {
      
-     Statement stmt = Connexion.getConnection().createStatement();
-	 String sql = "select count(*) from exemplaire e join livre l on e.idLivre = l.id where l.id=" + String.valueOf(idLivre);
-     ResultSet rset = stmt.executeQuery(sql);
-     rset.next();
-     
-     int nbExemplaires = rset.getInt(1);
-     
-     rset.close();
-     stmt.close();
-     
-     return nbExemplaires;
+	 Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+	 String sql = "select distinct count(id) from exemplaire where id_Livre =" + idLivre; // Requête à exécuter.
+	 ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
+	 rset.next(); // On va à la première ligne de données du rset.
+	 
+	 int nbExemplaires = rset.getInt(1); // On récupère le nombre d'exemplaires du livre.
+	 
+	 rset.close(); // Suppression de l'objet créé.
+	 stmt.close(); // Fermeture de la connexion créée.
+	 
+	 return nbExemplaires; // On retourne le nombre d'exemplaires du livre.
    }
 
   /**
@@ -286,22 +288,22 @@ public class ComposantBDLivre {
    */
   public static ArrayList<Integer> listeExemplaires(int idLivre) throws SQLException {
     
-	ArrayList<Integer> exemplaires = new ArrayList<Integer>();
-    
-	Statement stmt = Connexion.getConnection().createStatement();
-	String sql = "select e.id from exemplaire e join livre l on e.idLivre = l.id where l.id=" + String.valueOf(idLivre);
-    ResultSet rset = stmt.executeQuery(sql);
-    rset.next();
-    
-    while(rset.next()){
-    	int exemplaire = rset.getInt(1);
-    	exemplaires.add(exemplaire);
-    }
-    
-    rset.close();
-    stmt.close();
-    
-    return exemplaires;
+	ArrayList<Integer> exemplaires = new ArrayList<Integer>(); // Création de la liste de tous les id d'exemplaires du livre.
+	
+	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+	String sql = "select * from exemplaire where id_Livre =" + idLivre; // Requête à exécuter.
+	ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
+	rset.next(); // On va à la première ligne de données du rset.
+	
+	while(rset.next()){ // Récupération de chaque élément en colonne de la table des données.
+		int exemplaire = rset.getInt("id"); // On récupère le id de l'exemplaire du livre.
+		exemplaires.add(exemplaire);
+	}
+	
+	rset.close(); // Suppression de l'objet créé.
+	stmt.close(); // Fermeture de la connexion créée.
+	
+	return exemplaires; // On retourne la liste d'id des exemplaires du livre.
   }
 
   /**
@@ -312,11 +314,11 @@ public class ComposantBDLivre {
    */
    public static void ajouterExemplaire(int idLivre) throws SQLException {
 	   
-	Statement stmt = Connexion.getConnection().createStatement();
-	String sql = "insert into exemplaire values(nextval('exemplaire_id_seq')," + String.valueOf(idLivre) + ")";
-    ResultSet rset = stmt.executeQuery(sql);
-    rset.close();
-    stmt.close();
+	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+	String sql = "insert into exemplaire values(nextval('exemplaire_id_seq')," + idLivre + ")"; // Requête à exécuter.
+	stmt.executeUpdate(sql); // On exécute la requête.
+	
+	stmt.close(); // Fermeture de la connexion créée.
    }
 
     /**
@@ -327,11 +329,15 @@ public class ComposantBDLivre {
      */
    public static void supprimerExemplaire(int idExemplaire) throws SQLException {
      
-	 Statement stmt = Connexion.getConnection().createStatement();
-	 String sql = "delete * from exemplaire where id=" + String.valueOf(idExemplaire);
-	 ResultSet rset = stmt.executeQuery(sql);
-	 rset.close();
-	 stmt.close();
+	if(!ComposantBDEmprunt.estEmprunte(idExemplaire)) { // On vérifie si l'exemplaire n'est pas emprunté.
+		ComposantBDEmprunt.supprimerEmprunt(idExemplaire); // On supprime l'emprunt de cet exemplaire.
+		
+		Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+		String sql = "delete from exemplaire where id =" + idExemplaire; // Requête à exécuter.
+		stmt.executeUpdate(sql); // On exécute la requête.
+		
+		stmt.close(); // Fermeture de la connexion créée.
+	}
    }
 
 }

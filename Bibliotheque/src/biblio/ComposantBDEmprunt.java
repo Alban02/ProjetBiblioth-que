@@ -190,4 +190,8 @@ public class ComposantBDEmprunt {
     //
     return stats;
   }
+  
+  public static void supprimerEmprunt(int id_Exemplaire) throws SQLException {
+	  
+  }
 }
