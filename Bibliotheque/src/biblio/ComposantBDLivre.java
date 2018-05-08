@@ -94,7 +94,7 @@ public class ComposantBDLivre {
 	 String[] livre = new String[5]; // Création du tableau de chaînes de caractères pour recevoir les données du livre.
 	 
 	 Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
-	 String sql = "select * from livre where id=" + idLivre; // Requête à exécuter.
+	 String sql = "select * from livre where id =" + idLivre; // Requête à exécuter.
 	 ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
 	 
 	 while(rset.next()) { // Récupération de chaque élément en colonne de la table des données.
@@ -133,7 +133,7 @@ public class ComposantBDLivre {
 	String[] livre = new String[6]; // Création du tableau de chaînes de caractères pour recevoir les données du livre.
 	
 	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
-	String sql = "select e.id, l.* from livre l join exemplaire e on e.idLivre = l.id where e.id =" + idExemplaire; // Requête à exécuter.
+	String sql = "select e.id, l.* from livre l join exemplaire e on e.id_livre = l.id where e.id = " + idExemplaire; // Requête à exécuter.
 	ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
 	
 	while(rset.next()) { // Récupération de chaque élément en colonne de la table des données.
@@ -249,7 +249,7 @@ public class ComposantBDLivre {
 	  
 	  // Suppression du livre.
 	  Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
-	  String sql = "delete from livre where id=" + idLivre; // Requête à exécuter.
+	  String sql = "delete from livre where id =" + idLivre; // Requête à exécuter.
 	  stmt.executeUpdate(sql); // On exécute la requête.
 	  
 	  stmt.close(); // Fermeture de la connexion créée.
@@ -266,7 +266,7 @@ public class ComposantBDLivre {
    public static int nbExemplaires(int idLivre) throws SQLException {
      
 	 Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
-	 String sql = "select distinct count(id) from exemplaire where id_Livre =" + idLivre; // Requête à exécuter.
+	 String sql = "select distinct count(id) from exemplaire where id_livre =" + idLivre; // Requête à exécuter.
 	 ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
 	 rset.next(); // On va à la première ligne de données du rset.
 	 
@@ -291,7 +291,7 @@ public class ComposantBDLivre {
 	ArrayList<Integer> exemplaires = new ArrayList<Integer>(); // Création de la liste de tous les id d'exemplaires du livre.
 	
 	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
-	String sql = "select * from exemplaire where id_Livre =" + idLivre; // Requête à exécuter.
+	String sql = "select * from exemplaire where id_livre =" + idLivre; // Requête à exécuter.
 	ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
 	rset.next(); // On va à la première ligne de données du rset.
 	
@@ -330,7 +330,7 @@ public class ComposantBDLivre {
    public static void supprimerExemplaire(int idExemplaire) throws SQLException {
      
 	if(!ComposantBDEmprunt.estEmprunte(idExemplaire)) { // On vérifie si l'exemplaire n'est pas emprunté.
-		ComposantBDEmprunt.supprimerEmprunt(idExemplaire); // On supprime l'emprunt de cet exemplaire.
+		ComposantBDEmprunt.supprimerEmprunt(0, idExemplaire); // On supprime l'emprunt de cet exemplaire.
 		
 		Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
 		String sql = "delete from exemplaire where id =" + idExemplaire; // Requête à exécuter.

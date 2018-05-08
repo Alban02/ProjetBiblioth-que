@@ -188,7 +188,7 @@ public class ComposantBDAbonne {
   public static void supprimerAbonne(int idAbonne) throws SQLException {
     
 	  if(ComposantBDEmprunt.listeEmpruntsEnCours(idAbonne).isEmpty()) { // On vérifie que la liste des emprunts de l'abonné est vide.
-		 ComposantBDEmprunt.supprimerEmprunt(idAbonne); // On supprime l'emprunt fait par l'abonné. 
+		 ComposantBDEmprunt.supprimerEmprunt(1, idAbonne); // On supprime l'emprunt fait par l'abonné. 
 		 
 		 Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD. 
 		 String sql = "delete from abonne where id =" + idAbonne; // Requête à exécuter.

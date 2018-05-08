@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -20,10 +24,18 @@ public class ComposantBDEmprunt {
    * @throws SQLException en cas d'erreur de connexion à la base.
    */
   public static int nbEmpruntsEnCours() throws SQLException {
-    //
-    // A COMPLETER
-    //
-    return -1;
+    
+	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+	String sql = "select distinct count(id_abonne) from emprunt where date_retour is null"; // Requête à exécuter.
+	ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
+	rset.next(); // On va à la première ligne de données du rset.
+	
+	int nbEmprunt = rset.getInt(1); // On récupère le count à la première colonne.
+	
+	rset.close(); // Suppression de l'objet créé.
+	stmt.close(); // Fermeture de la connexion créée.
+	
+	return nbEmprunt; // On retourne le nombre des abonnés.
   }
 
   /**
@@ -34,10 +46,18 @@ public class ComposantBDEmprunt {
    * @throws SQLException en cas d'erreur de connexion à la base.
    */
   public static int nbEmpruntsEnCours(int idAbonne) throws SQLException {
-    //
-    // A COMPLETER
-    //
-    return -1;
+    
+	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+	String sql = "select distinct count(id_abonne) from emprunt where date_retour is null and id_abonne =" + idAbonne; // Requête à exécuter.
+	ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
+	rset.next(); // On va à la première ligne de données du rset.
+
+	int nbEmprunt = rset.getInt(1); // On récupère le count à la première colonne.
+	
+	rset.close(); // Suppression de l'objet créé.
+	stmt.close(); // Fermeture de la connexion créée.
+	
+	return nbEmprunt; // On retourne le nombre des abonnés.
   }
 
   
@@ -60,13 +80,45 @@ public class ComposantBDEmprunt {
    * @throws SQLException en cas d'erreur de connexion à la base.
    */
   public static ArrayList<String[]> listeEmpruntsEnCours() throws SQLException {
-    ArrayList<String[]> emprunts = new ArrayList<String[]>();
-    //
-    // A COMPLETER
-    //
-    return emprunts;
-  }
+    
+	ArrayList<String[]> emprunts = new ArrayList<String[]>(); // Oncrée la liste de tous les emprunts en cours.
+	
+    Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+    // Requête à exécuter.
+    String sql = "select e.id, l.id, l.titre, l.auteur, a.id, a.nom, a.prenom, em.date_emprunt from emprunt em "
+			+ "join exemplaire e on e.id = em.id_exemplaire "
+			+ "join livre l on l.id = e.id_livre "
+			+ "join abonne a on a.id = em.id_abonne "
+			+ "where em.date_retour is null";	    
 
+	ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
+	
+	while (rset.next()) { // Récupération de chaque élément en ligne et colonne de la table des données en parcourant ligne par ligne de l'objet rset.
+		String[] emprunt = new String[8];
+		emprunt[0] = rset.getString("id");
+		emprunt[1] = rset.getString("id");
+		emprunt[2] = rset.getString("titre");
+		emprunt[3] = rset.getString("auteur");
+		emprunt[4] = rset.getString("id");
+		emprunt[5] = rset.getString("nom");
+		emprunt[6] = rset.getString("prenom");     
+		emprunt[7] = formatageDate.format(rset.getTimestamp("date_emprunt"));
+		
+		emprunts.add(emprunt); // On récupère chaque emprunt qu'on ajoute dans la liste de tous les emprunts.
+	}
+	
+	rset.close(); // Suppression de l'objet créé.
+	stmt.close(); // Fermeture de la connexion créée.
+	
+	return emprunts; // On retourne la liste de tous les emprunts en cours.
+  }
+  
+  /**
+   * Formatage de la date en jour/mois/année Heure:minutes.
+   */
+  private static SimpleDateFormat formatageDate = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+  
+  
   /**
    * Récupération de la liste des emprunts en cours pour un abonné donné.
    * 
@@ -83,11 +135,35 @@ public class ComposantBDEmprunt {
    * @throws SQLException en cas d'erreur de connexion à la base.
    */
   public static ArrayList<String[]> listeEmpruntsEnCours(int idAbonne) throws SQLException {
-    ArrayList<String[]> emprunts = new ArrayList<String[]>();
-    //
-    // A COMPLETER
-    //
-    return emprunts;
+    
+	ArrayList<String[]> emprunts = new ArrayList<String[]>(); // Oncrée la liste de tous les emprunts en cours effectués par l'abonné.
+    
+	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+	// Requête à exécuter.
+	String sql = "select e.id, l.id, l.titre, l.auteur, em.date_emprunt from emprunt em "
+			+ "join exemplaire e on e.id = em.id_exemplaire "
+			+ "join livre l on l.id = e.id_livre "
+			+ "join abonne a on a.id = em.id_abonne "
+			+ "where em.date_retour is null and a.id ="+ idAbonne;	
+
+	ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
+	
+	while (rset.next()) { // Récupération de chaque élément en ligne et colonne de la table des données en parcourant ligne par ligne de l'objet rset.
+		String[] emprunt = new String[5];
+		emprunt[0] = rset.getString("id");
+		emprunt[1] = rset.getString("id");
+		emprunt[2] = rset.getString("titre");
+		emprunt[3] = rset.getString("auteur");     
+		emprunt[4] = formatageDate.format(rset.getTimestamp("date_emprunt"));
+		
+		emprunts.add(emprunt); // On récupère chaque emprunt qu'on ajoute dans la liste de tous les emprunts.
+	}
+	
+	rset.close(); // Suppression de l'objet créé.
+	stmt.close(); // Fermeture de la connexion créée.
+	
+	
+	return emprunts; // On retourne la liste de tous les emprunts en cours effectués par l'abonné.
   }
 
   /**
@@ -111,11 +187,38 @@ public class ComposantBDEmprunt {
    * @throws SQLException en cas d'erreur de connexion à la base.
    */
   public static ArrayList<String[]> listeEmpruntsHistorique() throws SQLException {
-    ArrayList<String[]> emprunts = new ArrayList<String[]>();
-    //
-    // A COMPLETER
-    //
-    return emprunts;
+    
+	ArrayList<String[]> emprunts = new ArrayList<String[]>(); // Oncrée la liste de tous les emprunts passés.
+    
+	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+	// Requête à exécuter.
+    String sql = "select e.id, l.id, l.titre, l.auteur, a.id, a.nom, a.prenom, em.date_emprunt, em.date_retour from emprunt em "
+			+ "join exemplaire e on e.id = em.id_exemplaire "
+			+ "join livre l on l.id = e.id_livre "
+			+ "join abonne a on a.id = em.id_abonne "
+			+ "where em.date_retour is not null";	    
+
+	ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
+	
+	while (rset.next()) { // Récupération de chaque élément en ligne et colonne de la table des données en parcourant ligne par ligne de l'objet rset.
+		String[] emprunt = new String[9];
+		emprunt[0] = rset.getString("id");
+		emprunt[1] = rset.getString("id");
+		emprunt[2] = rset.getString("titre");
+		emprunt[3] = rset.getString("auteur");
+		emprunt[4] = rset.getString("id");
+		emprunt[5] = rset.getString("nom");
+		emprunt[6] = rset.getString("prenom");
+		emprunt[7] = formatageDate.format(rset.getTimestamp("date_emprunt"));
+		emprunt[8] = formatageDate.format(rset.getTimestamp("date_retour"));
+		
+		emprunts.add(emprunt); // On récupère chaque emprunt qu'on ajoute dans la liste de tous les emprunts.
+	}
+	
+	rset.close(); // Suppression de l'objet créé.
+	stmt.close(); // Fermeture de la connexion créée.
+	
+	return emprunts; // On retourne la liste de tous les emprunts passés.
   }
 
   /**
@@ -127,9 +230,18 @@ public class ComposantBDEmprunt {
    * @throws SQLException en cas d'erreur de connexion à la base.
    */
   public static void emprunter(int idAbonne, int idExemplaire) throws SQLException {
-    //
-    // A COMPLETER
-    //
+    
+	String sql = "insert into emprunt values(?, ?, ?, NULL)"; // Requête préparée à exécuter.
+	
+    Timestamp dateEmprunt = new Timestamp(new Date().getTime()); // Création de la variable de la date d'emprunt. On récupère la date et l'heure de l'emprunt effectué.
+  
+    PreparedStatement pstmt = Connexion.getConnection().prepareStatement(sql); // Création de la connexion à la BD pour faire une requête préparée.
+    pstmt.setInt(1, idAbonne); // On définit le premier ? de sql à idAbonne.
+    pstmt.setInt(2,idExemplaire); // On définit le deuxième ? de sql à idExemplaire.
+    pstmt.setTimestamp(3,dateEmprunt); // On définit le troisième ? de sql à dateEemprunt.
+    
+    pstmt.executeUpdate(); // On exécute la requête.
+	pstmt.close(); // Fermeture de la connexion créée.
   }
 
   /**
@@ -139,9 +251,18 @@ public class ComposantBDEmprunt {
    * @throws SQLException en cas d'erreur de connexion à la base.
    */
   public static void rendre(int idExemplaire) throws SQLException {
-    //
-    // A COMPLETER
-    //
+	  
+	String sql = "update emprunt set date_retour = ? where id_exemplaire = ? and date_retour is null"; // Requête préparée à exécuter.
+	
+	Timestamp dateRetour = new Timestamp(new Date().getTime()); // Création de la variable de la date de retour. On récupère la date et l'heure du retour de l'emprunt.
+	  
+	PreparedStatement pstmt = Connexion.getConnection().prepareStatement(sql); // Création de la connexion à la BD pour faire une requête préparée.
+	  
+	pstmt.setTimestamp(1, dateRetour); // On définit le premier ? de sql à dateRetour.
+	pstmt.setInt(2, idExemplaire); // On définit le deuxième ? de sql à idExemplaire.
+	  
+	pstmt.executeUpdate(); // On exécute la requête.
+	pstmt.close(); // Fermeture de la connexion créée.
   }
   
   /**
@@ -153,11 +274,18 @@ public class ComposantBDEmprunt {
    * @throws SQLException en cas d'erreur de connexion à la base.
    */
   public static boolean estEmprunte(int idExemplaire) throws SQLException {
-    boolean estEmprunte = false;
-    //
-    // A COMPLETER
-    //
-    return estEmprunte;
+    
+	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+    String sql = "select * from emprunt where date_retour is null and id_exemplaire =" + idExemplaire; // Requête à exécuter.
+    ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
+    
+    if(rset.next()) { // Si rset n'est pas vide, on retourne vraie (true).
+    	rset.close();
+    	stmt.close();
+    	return true;
+    }
+    
+    return false; // Sinon, on retourne faux (false).
   }
 
   /**
@@ -191,7 +319,17 @@ public class ComposantBDEmprunt {
     return stats;
   }
   
-  public static void supprimerEmprunt(int id_Exemplaire) throws SQLException {
-	  
+  public static void supprimerEmprunt(int head, int id) throws SQLException {
+	
+	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
+	
+	// Suppression d'un emprunt par id_abonne.
+	String sql = "delete from emprunt where date_retour is not null and id_abonne =" + id; // Requête à exécuter.
+	
+	// Suppression d'un emprunt par id_exemplaire.
+	if(head == 0) sql = "delete from emprunt where date_retour is not null and id_exemplaire =" + id;
+	    
+	stmt.executeUpdate(sql); // execution de la requette
+	stmt.close();
   }
 }

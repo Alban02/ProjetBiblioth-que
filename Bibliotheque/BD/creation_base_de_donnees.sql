@@ -32,8 +32,8 @@ create table livre
 create table exemplaire
 (
   id		serial	primary key,
-  id_Livre	integer,
-  foreign key (id_Livre) references livre (id)
+  id_livre	integer,
+  foreign key (id_livre) references livre (id)
 );
 
 create table abonne
@@ -47,13 +47,13 @@ create table abonne
 
 create table emprunt
 (
-  id_Exemplaire		integer,
-  id_Abonne			integer,
-  date_Emprunt		date,
-  date_Retour		date,
-  primary key (id_xemplaire, id_Abonne, date_Emprunt),
-  foreign key (id_Exemplaire) references exemplaire (id),
-  foreign key (id_Abonne) references abonne (id)
+  id_exemplaire		integer,
+  id_abonne			integer,
+  date_emprunt		date,
+  date_retour		date,
+  primary key (id_exemplaire, id_abonne, date_emprunt),
+  foreign key (id_exemplaire) references exemplaire (id),
+  foreign key (id_abonne) references abonne (id)
 );
 
 -- +----------------------------------------------------------------------------------------------+
