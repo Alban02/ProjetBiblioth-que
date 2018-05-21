@@ -49,8 +49,8 @@ create table emprunt
 (
   id_exemplaire		integer,
   id_abonne			integer,
-  date_emprunt		date,
-  date_retour		date,
+  date_emprunt		timestamp,
+  date_retour		timestamp,
   primary key (id_exemplaire, id_abonne, date_emprunt),
   foreign key (id_exemplaire) references exemplaire (id),
   foreign key (id_abonne) references abonne (id)

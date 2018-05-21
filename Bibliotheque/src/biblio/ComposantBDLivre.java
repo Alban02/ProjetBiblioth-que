@@ -118,7 +118,8 @@ public class ComposantBDLivre {
   * @param idExemplaire : id de l'exemplaire
   * @return un tableau de chaînes de caractères (<code>String[]</code>). Chaque
   * tableau doit contenir 6 éléments (dans cet ordre) :
-  * <ul>
+  * <ul> 	État 	Supprimer
+
   *   <li>0 : id de l'exemplaire</li>
   *   <li>1 : id du livre</li>
   *   <li>2 : isbn10</li>
@@ -293,7 +294,6 @@ public class ComposantBDLivre {
 	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
 	String sql = "select * from exemplaire where id_livre =" + idLivre; // Requête à exécuter.
 	ResultSet rset = stmt.executeQuery(sql); // Création de la table des données après exécution de la requête.
-	rset.next(); // On va à la première ligne de données du rset.
 	
 	while(rset.next()){ // Récupération de chaque élément en colonne de la table des données.
 		int exemplaire = rset.getInt("id"); // On récupère le id de l'exemplaire du livre.

@@ -188,7 +188,7 @@ public class ComposantBDEmprunt {
    */
   public static ArrayList<String[]> listeEmpruntsHistorique() throws SQLException {
     
-	ArrayList<String[]> emprunts = new ArrayList<String[]>(); // Oncrée la liste de tous les emprunts passés.
+	ArrayList<String[]> emprunts = new ArrayList<String[]>(); // On crée la liste de tous les emprunts passés.
     
 	Statement stmt = Connexion.getConnection().createStatement(); // Création de la connexion à la BD.
 	// Requête à exécuter.
@@ -231,17 +231,22 @@ public class ComposantBDEmprunt {
    */
   public static void emprunter(int idAbonne, int idExemplaire) throws SQLException {
     
-	String sql = "insert into emprunt values(?, ?, ?, NULL)"; // Requête préparée à exécuter.
+	// On vérifie que l'exemplaire n'est pas emprunté.
+	if(!estEmprunte(idExemplaire)) {
+		String sql = "insert into emprunt values(?, ?, ?, NULL)"; // Requête préparée à exécuter.
+		
+	    Timestamp dateEmprunt = new Timestamp(new Date().getTime()); // Création de la variable de la date d'emprunt. On récupère la date et l'heure de l'emprunt effectué.
+	  
+	    PreparedStatement pstmt = Connexion.getConnection().prepareStatement(sql); // Création de la connexion à la BD pour faire une requête préparée.
+	    pstmt.setInt(1, idExemplaire); // On définit le premier ? de sql à idExemplaire.
+	    pstmt.setInt(2, idAbonne); // On définit le deuxième ? de sql à idAbonne.
+	    pstmt.setTimestamp(3, dateEmprunt); // On définit le troisième ? de sql à dateEemprunt.
+	    
+	    pstmt.executeUpdate(); // On exécute la requête.
+		pstmt.close(); // Fermeture de la connexion créée.
+	}
 	
-    Timestamp dateEmprunt = new Timestamp(new Date().getTime()); // Création de la variable de la date d'emprunt. On récupère la date et l'heure de l'emprunt effectué.
-  
-    PreparedStatement pstmt = Connexion.getConnection().prepareStatement(sql); // Création de la connexion à la BD pour faire une requête préparée.
-    pstmt.setInt(1, idAbonne); // On définit le premier ? de sql à idAbonne.
-    pstmt.setInt(2,idExemplaire); // On définit le deuxième ? de sql à idExemplaire.
-    pstmt.setTimestamp(3,dateEmprunt); // On définit le troisième ? de sql à dateEemprunt.
-    
-    pstmt.executeUpdate(); // On exécute la requête.
-	pstmt.close(); // Fermeture de la connexion créée.
+	else throw new SQLException("Exemplaire déjà emprunté.");
   }
 
   /**
@@ -251,22 +256,27 @@ public class ComposantBDEmprunt {
    * @throws SQLException en cas d'erreur de connexion à la base.
    */
   public static void rendre(int idExemplaire) throws SQLException {
-	  
-	String sql = "update emprunt set date_retour = ? where id_exemplaire = ? and date_retour is null"; // Requête préparée à exécuter.
 	
-	Timestamp dateRetour = new Timestamp(new Date().getTime()); // Création de la variable de la date de retour. On récupère la date et l'heure du retour de l'emprunt.
+	  // On vérifie que l'exemplaire est en cours d'emprunt
+	  if(estEmprunte(idExemplaire)) {
+		  	String sql = "update emprunt set date_retour = ? where id_exemplaire = ? and date_retour is null"; // Requête préparée à exécuter.
+			
+			Timestamp dateRetour = new Timestamp(new Date().getTime()); // Création de la variable de la date de retour. On récupère la date et l'heure du retour de l'emprunt.
+			  
+			PreparedStatement pstmt = Connexion.getConnection().prepareStatement(sql); // Création de la connexion à la BD pour faire une requête préparée.
+			  
+			pstmt.setTimestamp(1, dateRetour); // On définit le premier ? de sql à dateRetour.
+			pstmt.setInt(2, idExemplaire); // On définit le deuxième ? de sql à idExemplaire.
+			  
+			pstmt.executeUpdate(); // On exécute la requête.
+			pstmt.close(); // Fermeture de la connexion créée.  
+	  }
 	  
-	PreparedStatement pstmt = Connexion.getConnection().prepareStatement(sql); // Création de la connexion à la BD pour faire une requête préparée.
-	  
-	pstmt.setTimestamp(1, dateRetour); // On définit le premier ? de sql à dateRetour.
-	pstmt.setInt(2, idExemplaire); // On définit le deuxième ? de sql à idExemplaire.
-	  
-	pstmt.executeUpdate(); // On exécute la requête.
-	pstmt.close(); // Fermeture de la connexion créée.
+	  else throw new SQLException("Exemplaire n'est pas actuellement emprunté.");
   }
   
   /**
-   * Détermine si un exemplaire sonné connu par son identifiant est
+   * Détermine si un exemplaire donné connu par son identifiant est
    * actuellement emprunté.
    * 
    * @param idExemplaire
