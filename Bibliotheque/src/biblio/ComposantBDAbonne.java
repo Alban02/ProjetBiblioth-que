@@ -196,5 +196,6 @@ public class ComposantBDAbonne {
 		 
 		 stmt.close(); // Fermeture de la connexion créée.
 	  }
+	  else throw new SQLException("Cet abonné a des emprunts en cours.");
   }
 }

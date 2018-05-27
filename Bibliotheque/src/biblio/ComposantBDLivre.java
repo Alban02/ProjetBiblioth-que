@@ -338,6 +338,8 @@ public class ComposantBDLivre {
 		
 		stmt.close(); // Fermeture de la connexion créée.
 	}
+	
+	else throw new SQLException("Cet exemplaire est en cours d'emprunt.");
    }
 
 }
